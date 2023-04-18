@@ -1,10 +1,10 @@
 extern crate micrograd_rs;
+use indexmap::IndexMap;
 use micrograd_rs::activations as Activation;
 use micrograd_rs::pooling::AvgPool;
 use micrograd_rs::prelude::*;
 use micrograd_rs::Conv2D;
 use micrograd_rs::{Layer, Linear, Model, Sequential};
-use indexmap::IndexMap;
 use serde_pickle::{de, DeOptions};
 use std::fs;
 
@@ -110,8 +110,8 @@ fn valid_load_of_pytorch_convolutional_model() {
     let path = "Pytorch_ConvolutionalModel.pt";
     let file = fs::File::open(path).unwrap();
     let convo_state_dict: IndexMap<String, Vec<f64>> =
-            de::from_reader(file, DeOptions::new()).unwrap();
-    
+        de::from_reader(file, DeOptions::new()).unwrap();
+
     let name = "conv2d";
     let padding = (1, 2);
     let (in_channels, out_channels) = (3, 1);
@@ -145,7 +145,7 @@ fn valid_load_of_pytorch_linear_model() {
     let path = "Pytorch_LinearModel.pt";
     let file = fs::File::open(path).unwrap();
     let linear_state_dict: IndexMap<String, Vec<f64>> =
-            de::from_reader(file, DeOptions::new()).unwrap();
+        de::from_reader(file, DeOptions::new()).unwrap();
 
     let mut linear_model = sequential!(
         Ix1,
